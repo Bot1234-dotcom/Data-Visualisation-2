@@ -1,0 +1,115 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 400,
+    "title": "Relationship between Unemployment Rate, GDP and Gini Coefficient for Countries in 2022",
+    "data": {
+        "url": "https://raw.githubusercontent.com/Bot1234-dotcom/Data-Visualisation-2/refs/heads/main/data/country_unemployment_gdp_gini.csv"
+    },
+    "params": [
+                
+                {
+                  "name": "gdp_above",
+                  "value": 0,
+                  "bind": {
+                    "input": "select",
+                    "options": [0, 5e10, 1e11, 5e11],
+                    "labels": ["0", "50B", "100B", "500B"],
+                    "name": "Minimum GDP: "
+                    
+                  }
+                }
+                
+            ],
+    "transform": [
+      {"filter": "datum.GDP_in_USD > gdp_above"}
+    ],
+    "encoding": {
+                "x": {
+                    "field": "Unemployment_Rate",
+                    "type": "quantitative",
+                    "title": "Unemployment Rate"
+                },
+                "y": {
+                    "field": "Gini_coefficient",
+                    "type": "quantitative",
+                    "title": "Gini Coefficient"
+                }
+    },
+    "layer": [
+        {
+            "params": [
+              {
+                    "name": "continent_highlight",
+                    "select": {"type": "point", "fields": ["Continent"]},
+                    "bind": "legend"
+                }
+            ],
+            "mark": "circle",
+            "encoding": {
+                "color": {
+                    "field": "Continent",
+                    "type": "nominal",
+                    "scale": {
+                      "domain": [
+                        "Africa",
+                        "Asia",
+                        "South America",
+                        "North America",
+                        "Oceania",
+                        "Europe"
+                      ],
+                      "range": [
+                        "#8c510a",
+                        "#d8b365",
+                        "#f1a340",
+                        "#7fbf7b",
+                        "#5ab4ac",
+                        "#01665e"
+                      ]
+                    }
+                },
+                "opacity": {
+                    "condition": {"param": "continent_highlight", "value": 0.7}, "value": 0.1
+                },
+                "size": {
+                    "field": "GDP_in_USD",
+                    "type": "quantitative",
+                    "title": "GDP (in USD)",
+                    "scale": {
+                    "type": "threshold",
+                    "domain": [1e10, 5e10, 1e11, 5e11]
+                    },
+                    "legend": {"format": ".1s"} 
+                },
+                "tooltip": [
+                    {"field": "Country_Name1", "type": "nominal", "title": "Country:"},
+                    {"field": "Unemployment_Rate", "type": "quantitative", "title": "Unemployment rate:", "format": ".2f"},
+                    {"field": "Gini_coefficient", "type": "quantitative", "title": "Gini coefficient:", "format": ".2f"},
+                    {"field": "GDP_in_USD", "type": "quantitative", "title": "GDP (in USD):", "format": ",.3s"}
+                ]
+                
+            } 
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "baseline": "middle",
+                "dx": 12,
+                "fontSize": 11.5,
+                "fontStyle": "italic"
+            },
+            "encoding": {
+                "text": {"field": "Country_Name1", "type": "nominal"},
+                "color": {"value": "black"},
+                "opacity": {
+                    "condition": {
+                        "test": "datum['Country_Name1'] == 'Eswatini' || datum['Country_Name1'] == 'South Africa' || datum['Country_Name1'] == 'Botswana' || datum['Country_Name1'] == 'Namibia' || datum['Country_Name1'] == 'Czechia' || datum['Country_Name1'] == 'Slovakia' || datum['Country_Name1'] == 'Mexico' || datum['Country_Name1'] == 'Colombia'", "value": 1
+                    },
+                    "value": 0
+                }
+            }
+        }
+    ] 
+}
