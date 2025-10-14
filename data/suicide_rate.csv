@@ -39,15 +39,15 @@ Chile,8.708812
 China,6.9841213
 Colombia,4.8825946
 Comoros,9.11272
-Congo,11.919834
+"Congo, Republic of the",11.919834
 Cook Islands,9.335032
 Costa Rica,6.716639
-Cote d'Ivoire,13.350087
+Cote D'ivoire,13.350087
 Croatia,10.510235
 Cuba,9.5506315
 Cyprus,3.8793204
 Czechia,9.566039
-Democratic Republic of Congo,14.918761
+"Congo, Democratic Republic of the",14.918761
 Denmark,8.091381
 Djibouti,10.423273
 Dominica,3.9704623
@@ -120,7 +120,7 @@ Mongolia,18.49446
 Montenegro,11.422834
 Morocco,3.2861435
 Mozambique,21.413422
-Myanmar,3.1073408
+Burma,3.1073408
 Namibia,10.809209
 Nauru,27.403366
 Nepal,11.651627
@@ -131,7 +131,7 @@ Niger,8.92037
 Nigeria,7.9331284
 Niue,11.636062
 North America,10.826432
-North Korea,8.379988
+"Korea, North",8.379988
 North Macedonia,3.856524
 Norway,11.122086
 Oceania,10.626048
@@ -167,7 +167,7 @@ Solomon Islands,23.018873
 Somalia,15.521366
 South Africa,19.506004
 South America,6.5516133
-South Korea,21.014566
+"Korea, South",21.014566
 South Sudan,12.919869
 Spain,5.8123217
 Sri Lanka,15.207209
