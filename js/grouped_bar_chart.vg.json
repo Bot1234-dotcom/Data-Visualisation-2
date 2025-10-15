@@ -1,0 +1,9 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 400,
+    "title": "Mental Health Status by Occupation",
+    "data": {
+        "url": "https://raw.githubusercontent.com/Bot1234-dotcom/Data-Visualisation-2/refs/heads/main/data/employment.csv"
+    },
+}

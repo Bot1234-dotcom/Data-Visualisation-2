@@ -59,22 +59,163 @@
         {
             "width": 480,
             "height": 240,
-            "mark": {
-                "type": "line",
-                "point": true
-            },
             "encoding": {
                 "x": {"field": "Year", "type": "temporal",
                  "axis": {"tickCount": {"interval": "year", "step": 1}}, "scale": {"domain": {"param": "brush"}}},
                 "y": {"field": "Unemployment_Rate", "type": "quantitative",
-                "title": "Unemployment Rate"},
-                "tooltip": [
-                {"field": "Year", "type": "temporal", "format": "%Y"},
-                {"field": "Unemployment_Rate", "type": "quantitative", "format": ".2f"}
-                ]
-            }
+                "title": "Unemployment Rate"}
+            },
+            "layer": [
+                {
+                    "mark": {
+                    "type": "line",
+                    "point": true
+                    },
+                    "encoding": {
+                        "tooltip": [
+                        {"field": "Year", "type": "temporal", "format": "%Y"},
+                        {"field": "Unemployment_Rate", "type": "quantitative", "format": ".2f", "title": "Unemployment Rate"}
+                        ]
+                    }
+                },
+                {
+                    "transform": [
+                        {"filter": "year(datum.Year) == 1997"},
+                        {
+                            "calculate": "'Unemployment decreases from 1993'",
+                            "as": "1997_text_1"
+                        }
+                    ],
+                    "mark": {
+                        "type": "text",
+                        "align": "center",
+                        "dy": 10,
+                        "fontSize": 10,
+                        "fontStyle": "italic"
+                    },
+                    "encoding": {
+                        "text": {"field": "1997_text_1"}
+                    }
+                },
+                {
+                    "transform": [
+                        {"filter": "year(datum.Year) == 1997"},
+                        {
+                            "calculate": "'to 1997 with strong average GDP'",
+                            "as": "1997_text_2"
+                        }
+                    ],
+                    "mark": {
+                        "type": "text",
+                        "align": "center",
+                        "dy": 23,
+                        "fontSize": 10,
+                        "fontStyle": "italic"
+                    },
+                    "encoding": {
+                        "text": {"field": "1997_text_2"}
+                    }
+                },
+                {
+                    "transform": [
+                        {"filter": "year(datum.Year) == 1997"},
+                        {
+                            "calculate": "'growth rate of 7.8% per annum.'",
+                            "as": "1997_text_3"
+                        }
+                    ],
+                    "mark": {
+                        "type": "text",
+                        "align": "center",
+                        "dy": 36,
+                        "fontSize": 10,
+                        "fontStyle": "italic"
+                    },
+                    "encoding": {
+                        "text": {"field": "1997_text_3"}
+                    }
+                },
+                {
+                    "transform": [
+                        {"filter": "year(datum.Year) == 2003"},
+                        {
+                            "calculate": "'Unemployment rate stabilised quickly even'",
+                            "as": "2003_text_1"
+                        }
+                    ],
+                    "mark": {
+                        "type": "text",
+                        "align": "center",
+                        "dy": -28,
+                        "fontSize": 10,
+                        "fontStyle": "italic"
+                    },
+                    "encoding": {
+                        "text": {"field": "2003_text_1"}
+                    }
+                },
+                {
+                    "transform": [
+                        {"filter": "year(datum.Year) == 2003"},
+                        {
+                            "calculate": "'after the Asian Financial Crisis of 1997.'",
+                            "as": "2003_text_2"
+                        }
+                    ],
+                    "mark": {
+                        "type": "text",
+                        "align": "center",
+                        "dy": -15,
+                        "fontSize": 10,
+                        "fontStyle": "italic"
+                    },
+                    "encoding": {
+                        "text": {"field": "2003_text_2"}
+                    }
+                },
+                {
+                    "transform": [
+                        {"filter": "year(datum.Year) == 2019"},
+                        {
+                            "calculate": "'Sharp rise led'",
+                            "as": "2019_text_1"
+                        }
+                    ],
+                    "mark": {
+                        "type": "text",
+                        "align": "center",
+                        "dy": 10,
+                        "fontSize": 10,
+                        "fontStyle": "italic"
+                    },
+                    "encoding": {
+                        "text": {"field": "2019_text_1"}
+                    }
+                },
+                {
+                    "transform": [
+                        {"filter": "year(datum.Year) == 2019"},
+                        {
+                            "calculate": "'by COVID-19.'",
+                            "as": "2019_text_2"
+                        }
+                    ],
+                    "mark": {
+                        "type": "text",
+                        "align": "center",
+                        "dy": 23,
+                        "fontSize": 10,
+                        "fontStyle": "italic"
+                    },
+                    "encoding": {
+                        "text": {"field": "2019_text_2"}
+                    }
+                }
+            ]
+                
             
-        },
+            
+        }
 
     ]
     
