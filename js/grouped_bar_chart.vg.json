@@ -10,15 +10,30 @@
         {
             "fold": ["Growing_Stress", "Changes_Habits", "Coping_Struggles", "Work_Interest", "Social_Weakness"],
             "as": ["Question", "Response"]
+        },
+        {
+            "aggregate": [{"op": "count", "as": "count"}],
+            "groupby": ["Occupation", "Question", "Response"]
+        },
+        {
+            "joinaggregate": [{"op": "sum", "field": "count", "as": "total"}],
+            "groupby": ["Occupation", "Question"]
+        },
+        {
+            "calculate": "datum.count / datum.total",
+            "as": "percent"
+        },
+        {
+            "calculate": "datum.Question == 'Growing_Stress' ? 'Increasing stress level' : datum.Question == 'Changes_Habits' ? 'Habits changed' : datum.Question == 'Coping_Struggles' ? 'Struggling to cope' : datum.Question == 'Work_Interest' ? 'Interest in work' : 'Difficulty in social interactions'",
+            "as": "Question_Label"
         }
     ],
     "mark": "bar",
     "encoding": {
-        "x": {"field": "Occupation", "type": "nominal"},
+        "x": {"field": "Occupation", "type": "nominal", "axis": {"labelAngle": 0}},
         "xOffset": {"field": "Question"},
         "y": {
-            "aggregate": "count",
-            "field": {"repeat": "layer"},
+            "field": "percent",
             "type": "quantitative",
             "stack": "normalize",
             "title": "Proportion"
@@ -33,8 +48,9 @@
         },
         "tooltip": [
             {"field": "Occupation"},
-            {"field": "Question"},
-            {"field": "Response"}
+            {"field": "Question_Label", "title": "Indicator"},
+            {"field": "Response"},
+            {"field": "percent", "format": ".1%", "title": "Proportion"}
         ]
     }
     
