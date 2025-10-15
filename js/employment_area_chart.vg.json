@@ -1,9 +1,65 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 400,
+    "title": "Employment Rate by Sector in Malaysia from 1991 to 2022",
     "data": {
-        "url": ""
+        "url": "https://raw.githubusercontent.com/Bot1234-dotcom/Data-Visualisation-2/refs/heads/main/data/employment.csv"
     },
-    "vconcat": [
-        
+    "transform": [
+        {
+            "fold": ["Employment_Sector_Agriculture", "Employment_Sector_Industry", "Employment_Sector_Services"],
+            "as": ["Sector", "Proportion"]
+        }
+    ],
+    "vconcat":[
+        {
+            "width": 480,
+            "height": 240,
+            "mark": "area",
+            "encoding": {
+                "x": {"field": "Year", "type": "temporal", "axis": {"title": ""},
+                "scale": {"domain": {"param": "brush"}}},
+                "y": {"aggregate": "sum", "field": "Proportion", "type": "quantitative",
+                "title": "Proportion", "stack": "normalize"},
+                "color": {"field": "Sector", "type": "nominal"}, 
+                "tooltip": [
+                {"field": "Year", "type": "temporal", "format": "%Y"},
+                {"field": "Sector", "type": "nominal"},
+                {"field": "Proportion", "type": "quantitative", "format": ".2f"}
+                ]
+            }
+            
+        },
+        {
+            "width": 480,
+            "height": 60,
+            "mark": "area",
+            "params": [
+                {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
+            ],
+            "encoding": {
+                "x": {"field": "Year", "type": "temporal"},
+                "y": {"aggregate": "sum", "field": "Proportion", "type": "quantitative",
+                "title": "Proportion", "stack": "normalize"},
+                "color": {
+                    "field": "Sector",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": ["Employment_Sector_Agriculture",
+                         "Employment_Sector_Industry",
+                          "Employment_Sector_Services"],
+                        "range": ["#66c2a5", "#fc8d62", "#8da0cb"]
+                    },
+                    "legend": {
+                        "labelExpr":
+                        "datum.label == 'Employment_Sector_Agriculture' ? 'Agriculture' : datum.label == 'Employment_Sector_Industry' ? 'Industry' : 'Services'"
+                    }
+                }
+            }
+            
+        }
     ]
+    
+
 }
