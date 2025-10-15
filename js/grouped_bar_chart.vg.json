@@ -4,6 +4,38 @@
     "height": 400,
     "title": "Mental Health Status by Occupation",
     "data": {
-        "url": "https://raw.githubusercontent.com/Bot1234-dotcom/Data-Visualisation-2/refs/heads/main/data/employment.csv"
+        "url": "https://raw.githubusercontent.com/Bot1234-dotcom/Data-Visualisation-2/refs/heads/main/data/mental_health_questionnaire.csv"
     },
+    "transform": [
+        {
+            "fold": ["Growing_Stress", "Changes_Habits", "Coping_Struggles", "Work_Interest", "Social_Weakness"],
+            "as": ["Question", "Response"]
+        }
+    ],
+    "mark": "bar",
+    "encoding": {
+        "x": {"field": "Occupation", "type": "nominal"},
+        "xOffset": {"field": "Question"},
+        "y": {
+            "aggregate": "count",
+            "field": {"repeat": "layer"},
+            "type": "quantitative",
+            "stack": "normalize",
+            "title": "Proportion"
+        },
+        "color": {
+            "field": "Response",
+            "type": "nominal",
+            "scale": {
+                "domain": ["No", "Maybe", "Yes"],
+                "range": ["#1b9e77", "#d95f02", "#7570b3"]
+            }
+        },
+        "tooltip": [
+            {"field": "Occupation"},
+            {"field": "Question"},
+            {"field": "Response"}
+        ]
+    }
+    
 }
