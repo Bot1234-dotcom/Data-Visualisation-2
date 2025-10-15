@@ -8,7 +8,7 @@
     },
     "transform": [
         {
-            "fold": ["Employment_Sector_Agriculture", "Employment_Sector_Industry", "Employment_Sector_Services"],
+            "fold": ["Agriculture", "Industry", "Services"],
             "as": ["Sector", "Proportion"]
         }
     ],
@@ -18,8 +18,8 @@
             "height": 240,
             "mark": "area",
             "encoding": {
-                "x": {"field": "Year", "type": "temporal", "axis": {"title": ""},
-                "scale": {"domain": {"param": "brush"}}},
+                "x": {"field": "Year", "type": "temporal", "axis": {"title": "",
+                "tickCount": {"interval": "year", "step": 1}}, "scale": {"domain": {"param": "brush"}}},
                 "y": {"aggregate": "sum", "field": "Proportion", "type": "quantitative",
                 "title": "Proportion", "stack": "normalize"},
                 "color": {"field": "Sector", "type": "nominal"}, 
@@ -46,15 +46,12 @@
                     "field": "Sector",
                     "type": "nominal",
                     "scale": {
-                        "domain": ["Employment_Sector_Agriculture",
-                         "Employment_Sector_Industry",
-                          "Employment_Sector_Services"],
+                        "domain": ["Agriculture",
+                         "Industry",
+                          "Services"],
                         "range": ["#66c2a5", "#fc8d62", "#8da0cb"]
-                    },
-                    "legend": {
-                        "labelExpr":
-                        "datum.label == 'Employment_Sector_Agriculture' ? 'Agriculture' : datum.label == 'Employment_Sector_Industry' ? 'Industry' : 'Services'"
                     }
+                    
                 }
             }
             
