@@ -39,7 +39,7 @@
                 {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
             ],
             "encoding": {
-                "x": {"field": "Year", "type": "temporal"},
+                "x": {"field": "Year", "type": "temporal", "axis": {"title": ""}},
                 "y": {"aggregate": "sum", "field": "Proportion", "type": "quantitative",
                 "title": "Proportion", "stack": "normalize"},
                 "color": {
@@ -55,7 +55,27 @@
                 }
             }
             
-        }
+        },
+        {
+            "width": 480,
+            "height": 240,
+            "mark": {
+                "type": "line",
+                "point": true
+            },
+            "encoding": {
+                "x": {"field": "Year", "type": "temporal",
+                 "axis": {"tickCount": {"interval": "year", "step": 1}}, "scale": {"domain": {"param": "brush"}}},
+                "y": {"field": "Unemployment_Rate", "type": "quantitative",
+                "title": "Unemployment Rate"},
+                "tooltip": [
+                {"field": "Year", "type": "temporal", "format": "%Y"},
+                {"field": "Unemployment_Rate", "type": "quantitative", "format": ".2f"}
+                ]
+            }
+            
+        },
+
     ]
     
 
