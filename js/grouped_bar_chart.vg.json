@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 800,
+    "width": "container",
     "height": 400,
     "title": "Mental Health Status by Occupation",
     "data": {
@@ -31,7 +31,7 @@
     "mark": "bar",
     "encoding": {
         "x": {"field": "Occupation", "type": "nominal", "axis": {"labelAngle": 0}},
-        "xOffset": {"field": "Question"},
+        "xOffset": {"field": "Question", "type": "nominal"},
         "y": {
             "field": "percent",
             "type": "quantitative",
@@ -53,5 +53,4 @@
             {"field": "percent", "format": ".1%", "title": "Proportion"}
         ]
     }
-    
 }

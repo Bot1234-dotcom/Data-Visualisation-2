@@ -1,7 +1,5 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 800,
-    "height": 400,
     "title": "Employment Rate by Sector in Malaysia from 1991 to 2022",
     "data": {
         "url": "https://raw.githubusercontent.com/Bot1234-dotcom/Data-Visualisation-2/refs/heads/main/data/employment.csv"
@@ -14,7 +12,7 @@
     ],
     "vconcat":[
         {
-            "width": 480,
+            "width": 430,
             "height": 240,
             "mark": "area",
             "encoding": {
@@ -32,7 +30,7 @@
             
         },
         {
-            "width": 480,
+            "width": 430,
             "height": 60,
             "mark": "area",
             "params": [
@@ -57,7 +55,7 @@
             
         },
         {
-            "width": 480,
+            "width": 430,
             "height": 240,
             "encoding": {
                 "x": {"field": "Year", "type": "temporal",

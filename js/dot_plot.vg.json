@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 800,
+    "width": "container",
     "height": 400,
     "title": "Impact of Family History on Mental Health",
     "data": {
@@ -82,7 +82,7 @@
                         "color": "black"
                     },
                     "encoding": {
-                        "x": {"value": 350},     
+                        "x": {"value": 250},     
                         "y": {"field": "family_history", "type": "nominal"},
                         "text": {"field": "annotation1"}
                     }
@@ -99,7 +99,7 @@
                         "color": "black"
                     },
                     "encoding": {
-                        "x": {"value": 350},     
+                        "x": {"value": 250},     
                         "y": {"field": "family_history", "type": "nominal"},
                         "text": {"field": "annotation2"}
                     }
@@ -116,7 +116,7 @@
                         "color": "black"
                     },
                     "encoding": {
-                        "x": {"value": 350},     
+                        "x": {"value": 250},     
                         "y": {"field": "family_history", "type": "nominal"},
                         "text": {"field": "annotation3"}
                     }
