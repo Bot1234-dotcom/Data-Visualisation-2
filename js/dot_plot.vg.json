@@ -1,0 +1,129 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 400,
+    "title": "Impact of Family History on Mental Health",
+    "data": {
+        "url": "https://raw.githubusercontent.com/Bot1234-dotcom/Data-Visualisation-2/refs/heads/main/data/mental_health_questionnaire.csv"
+    },
+    "transform": [
+        {
+            "calculate": "datum.Mental_Health_History == 'Yes' ? 1 : datum.Mental_Health_History == 'No' ? 0 : 0.5",
+            "as": "Mental_Health_History_Numerical"
+        }
+    ],
+    "layer": [
+        {
+            "mark": {"type": "circle", "size": 80},
+            "encoding": {
+                "x": {
+                    "aggregate": "mean",
+                    "field": "Mental_Health_History_Numerical",
+                    "type": "quantitative",
+                    "scale": {"domain": [0, 1]},
+                    "axis": {
+                        "title": "History of Mental Illness",
+                        "values": [0, 0.5, 1],
+                        "labelExpr": "datum.value == 1 ? 'Yes' : datum.value == 0 ? 'No' : 'Maybe'" 
+                    }
+                },
+                "y": {
+                    "field": "family_history",
+                    "type": "nominal",
+                    "axis": {"title": "History of Mental Illness in Family"}
+                },
+                "color": {
+                    "field": "family_history",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": ["No", "Yes"],
+                        "range": ["#1b9e77", "#d95f02"]
+                    },
+                    "legend": null
+                },
+                "tooltip": [
+                    {"field": "family_history", "title": "Family mental illness history"},
+                    {
+                        "aggregate": "mean",
+                        "field": "Mental_Health_History_Numerical",
+                        "type": "quantitative",
+                        "title": "Mean",
+                        "format": ".4f"
+                    }
+                ]
+            }
+        },
+        {
+            "data": {
+                "values": [
+                    {
+                        "family_history": "No",
+                        "annotation1": "Family history has negligible effect on an",
+                        "annotation2": "individual's mental illness history, with",
+                        "annotation3": "the mean of the answers close to 'Maybe'."
+                    },
+                    {
+                        "family_history": "Yes",
+                        "annotation1": "However, individuals seem to also be unsure",
+                        "annotation2": "about their mental well-being, possibly ",
+                        "annotation3": "due to stigma or a lack of self-awareness."
+                    }
+                ]
+            },
+            "layer": [
+                {
+                    "mark": {
+                        "type": "text",
+                        "align": "left",
+                        "baseline": "middle",
+                        "dx": 10,           
+                        "fontSize": 10,
+                        "fontStyle": "italic",
+                        "color": "black"
+                    },
+                    "encoding": {
+                        "x": {"value": 350},     
+                        "y": {"field": "family_history", "type": "nominal"},
+                        "text": {"field": "annotation1"}
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "align": "left",
+                        "baseline": "middle",
+                        "dx": 10,
+                        "dy": 13,           
+                        "fontSize": 10,
+                        "fontStyle": "italic",
+                        "color": "black"
+                    },
+                    "encoding": {
+                        "x": {"value": 350},     
+                        "y": {"field": "family_history", "type": "nominal"},
+                        "text": {"field": "annotation2"}
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "align": "left",
+                        "baseline": "middle",
+                        "dx": 10,
+                        "dy": 25,           
+                        "fontSize": 10,
+                        "fontStyle": "italic",
+                        "color": "black"
+                    },
+                    "encoding": {
+                        "x": {"value": 350},     
+                        "y": {"field": "family_history", "type": "nominal"},
+                        "text": {"field": "annotation3"}
+                    }
+                }
+            ]
+            
+        }
+    ]
+    
+}
