@@ -48,3 +48,11 @@ h1 {
 .small-font {
   font-size: 14px;
 }
+
+#main-title {
+  font-family: Georgia, serif;
+}
+
+#Mental-Health-Title {
+  margin-bottom: 0px;
+}

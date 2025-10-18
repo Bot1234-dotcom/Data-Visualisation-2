@@ -13,8 +13,8 @@
                   "bind": {
                     "input": "select",
                     "options": [0, 5e10, 1e11, 5e11],
-                    "labels": ["0", "50B", "100B", "500B"],
-                    "name": "Minimum GDP: "
+                    "labels": ["0", "50", "100", "500"],
+                    "name": "Minimum GDP (Billion USD): "
                     
                   }
                 }
@@ -27,7 +27,7 @@
                 "x": {
                     "field": "Unemployment_Rate",
                     "type": "quantitative",
-                    "title": "Unemployment Rate"
+                    "title": "Unemployment Rate (%)"
                 },
                 "y": {
                     "field": "Gini_coefficient",
@@ -69,7 +69,7 @@
                     }
                 },
                 "opacity": {
-                    "condition": {"param": "continent_highlight", "value": 0.7}, "value": 0.1
+                    "condition": {"param": "continent_highlight", "value": 0.6}, "value": 0.1
                 },
                 "size": {
                     "field": "GDP_in_USD",
@@ -82,10 +82,10 @@
                     "legend": {"format": ".1s"} 
                 },
                 "tooltip": [
-                    {"field": "Country_Name1", "type": "nominal", "title": "Country:"},
-                    {"field": "Unemployment_Rate", "type": "quantitative", "title": "Unemployment rate:", "format": ".2f"},
-                    {"field": "Gini_coefficient", "type": "quantitative", "title": "Gini coefficient:", "format": ".2f"},
-                    {"field": "GDP_in_USD", "type": "quantitative", "title": "GDP (in USD):", "format": ",.3s"}
+                    {"field": "Country_Name1", "type": "nominal", "title": "Country"},
+                    {"field": "Unemployment_Rate", "type": "quantitative", "title": "Unemployment rate (%)", "format": ".2f"},
+                    {"field": "Gini_coefficient", "type": "quantitative", "title": "Gini coefficient", "format": ".2f"},
+                    {"field": "GDP_in_USD", "type": "quantitative", "title": "GDP (in USD)", "format": ",.3s"}
                 ]
                 
             } 

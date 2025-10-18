@@ -1,56 +1,70 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": "container",
-    "height": 400,
-    "title": "Mental Health Status by Occupation",
-    "data": {
-        "url": "https://raw.githubusercontent.com/Bot1234-dotcom/Data-Visualisation-2/refs/heads/main/data/mental_health_questionnaire.csv"
-    },
-    "transform": [
-        {
-            "fold": ["Growing_Stress", "Changes_Habits", "Coping_Struggles", "Work_Interest", "Social_Weakness"],
-            "as": ["Question", "Response"]
-        },
-        {
-            "aggregate": [{"op": "count", "as": "count"}],
-            "groupby": ["Occupation", "Question", "Response"]
-        },
-        {
-            "joinaggregate": [{"op": "sum", "field": "count", "as": "total"}],
-            "groupby": ["Occupation", "Question"]
-        },
-        {
-            "calculate": "datum.count / datum.total",
-            "as": "percent"
-        },
-        {
-            "calculate": "datum.Question == 'Growing_Stress' ? 'Increasing stress level' : datum.Question == 'Changes_Habits' ? 'Habits changed' : datum.Question == 'Coping_Struggles' ? 'Struggling to cope' : datum.Question == 'Work_Interest' ? 'Interest in work' : 'Difficulty in social interactions'",
-            "as": "Question_Label"
-        }
-    ],
-    "mark": "bar",
-    "encoding": {
-        "x": {"field": "Occupation", "type": "nominal", "axis": {"labelAngle": 0}},
-        "xOffset": {"field": "Question", "type": "nominal"},
-        "y": {
-            "field": "percent",
-            "type": "quantitative",
-            "stack": "normalize",
-            "title": "Proportion"
-        },
-        "color": {
-            "field": "Response",
-            "type": "nominal",
-            "scale": {
-                "domain": ["No", "Maybe", "Yes"],
-                "range": ["#1b9e77", "#d95f02", "#7570b3"]
+    "title": "Mental Health Status by Occupation according to Various Indicators",
+    "repeat": ["Growing_Stress", "Changes_Habits", "Coping_Struggles", "Work_Interest", "Social_Weakness"],
+    "columns": 2,
+    "spec": {
+        "width": 340,
+        "height": 400,
+        "layer": [
+            {
+                "data": {
+                    "url": "https://raw.githubusercontent.com/Bot1234-dotcom/Data-Visualisation-2/refs/heads/main/data/mental_health_questionnaire.csv"
+                },
+                
+                "mark": "bar",
+                "encoding": {
+                    "x": {"field": "Occupation", "type": "nominal", "axis": {"labelAngle": 0}},
+                    "y": {
+                        "aggregate": "count",
+                        "field": {"repeat": "repeat"},
+                        "type": "quantitative",
+                        "stack": "normalize",
+                        "axis": {"format": ".0%"},
+                        "title": "Proportion"
+                    },
+                    "color": {
+                        "field": {"repeat": "repeat"},
+                        "type": "nominal",
+                        "scale": {
+                            "domain": ["No", "Maybe", "Yes"],
+                            "range": ["#1b9e77", "#d95f02", "#7570b3"]
+                        },
+                        "legend": {"title": "Answer"}
+                        
+                    },
+                    "tooltip": [
+                        {"field": "Occupation"},
+                        {"field": {"repeat": "repeat"}, "title": "Answer"},
+                        {"aggregate": "count", "title": "Number of respondents"}
+                    ]
+                }
+            },
+            {
+                "data": {
+                    "values": [
+                        {
+                            "Growing_Stress": "Increasing Stress Level",
+                            "Changes_Habits": "Habits Changed",
+                            "Coping_Struggles": "Struggling to Cope",
+                            "Work_Interest": "Interest in Work",
+                            "Social_Weakness": "Difficulty in Social Interactions"
+                        }
+                    ]
+                },
+                "mark": {
+                    "type": "text",
+                    "align": "right",
+                    "baseline": "bottom",
+                    "x": "width",
+                    "y": -3,
+                    "fontStyle": "bold"
+                },
+                "encoding": {"text": {"field": {"repeat": "repeat"}}}
             }
-        },
-        "tooltip": [
-            {"field": "Occupation"},
-            {"field": "Question_Label", "title": "Indicator"},
-            {"field": "Response"},
-            {"field": "percent", "format": ".1%", "title": "Proportion"}
         ]
     }
+    
+    
+    
 }

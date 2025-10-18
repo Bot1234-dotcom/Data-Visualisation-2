@@ -1,6 +1,5 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Employment Rate by Sector in Malaysia from 1991 to 2022",
     "data": {
         "url": "https://raw.githubusercontent.com/Bot1234-dotcom/Data-Visualisation-2/refs/heads/main/data/employment.csv"
     },
@@ -14,17 +13,18 @@
         {
             "width": 430,
             "height": 240,
+            "title": "Employment Rate by Sector in Malaysia from 1991 to 2022",
             "mark": "area",
             "encoding": {
                 "x": {"field": "Year", "type": "temporal", "axis": {"title": "",
                 "tickCount": {"interval": "year", "step": 1}}, "scale": {"domain": {"param": "brush"}}},
                 "y": {"aggregate": "sum", "field": "Proportion", "type": "quantitative",
-                "title": "Proportion", "stack": "normalize"},
+                "title": "Proportion", "stack": "normalize", "axis": {"format": ".0%"}},
                 "color": {"field": "Sector", "type": "nominal"}, 
                 "tooltip": [
                 {"field": "Year", "type": "temporal", "format": "%Y"},
                 {"field": "Sector", "type": "nominal"},
-                {"field": "Proportion", "type": "quantitative", "format": ".2f"}
+                {"field": "Proportion", "type": "quantitative", "format": ".2f", "title": "Proportion (%)"}
                 ]
             }
             
@@ -39,7 +39,7 @@
             "encoding": {
                 "x": {"field": "Year", "type": "temporal", "axis": {"title": ""}},
                 "y": {"aggregate": "sum", "field": "Proportion", "type": "quantitative",
-                "title": "Proportion", "stack": "normalize"},
+                "title": "Proportion", "stack": "normalize", "axis": {"format": ".0%"}},
                 "color": {
                     "field": "Sector",
                     "type": "nominal",
@@ -57,11 +57,12 @@
         {
             "width": 430,
             "height": 240,
+            "title": "Unemployment Rate in Malaysia from 1991 to 2022",
             "encoding": {
                 "x": {"field": "Year", "type": "temporal",
                  "axis": {"tickCount": {"interval": "year", "step": 1}}, "scale": {"domain": {"param": "brush"}}},
                 "y": {"field": "Unemployment_Rate", "type": "quantitative",
-                "title": "Unemployment Rate"}
+                "title": "Unemployment Rate (%)"}
             },
             "layer": [
                 {
@@ -72,7 +73,7 @@
                     "encoding": {
                         "tooltip": [
                         {"field": "Year", "type": "temporal", "format": "%Y"},
-                        {"field": "Unemployment_Rate", "type": "quantitative", "format": ".2f", "title": "Unemployment Rate"}
+                        {"field": "Unemployment_Rate", "type": "quantitative", "format": ".2f", "title": "Unemployment Rate (%)"}
                         ]
                     }
                 },
