@@ -48,7 +48,7 @@
                         "field": "Mental_Health_History_Numerical",
                         "type": "quantitative",
                         "title": "Mean",
-                        "format": ".4f"
+                        "format": ".2%"
                     }
                 ]
             }
